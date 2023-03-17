@@ -7,17 +7,17 @@
 
 #include "library_loader.hpp"
 
-void libbar_ctor()
-{
-    printf("[libbar] Loading bar library...\n");
-}
+// void libbar_ctor()
+// {
+//     printf("[libbar] Loading bar library...\n");
+// }
 
 void entryPoint()
 {
     printf("[libbar] Entry point for bar!\n");
 }
 
-void libbar_dtor()
-{
-    printf("[libbar] Closing bar...\n");
-}
+// void libbar_dtor()
+// {
+//     printf("[libbar] Closing bar...\n");
+// }

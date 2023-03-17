@@ -5,9 +5,14 @@
 ## Makefile with makefile constructor
 ##
 
+EXEC_NAME	=	bootstrap
+
 LIB_FOLDER	=	lib/
 
-SRC	=	$(LIB_FOLDER)libbar.c	\
+SRC	=	src/main.cpp	\
+		src/DisplayModule.cpp	\
+
+LIB	=	$(LIB_FOLDER)libbar.c	\
 		$(LIB_FOLDER)libfoo.c	\
 		$(LIB_FOLDER)libgra.c	\
 
@@ -19,7 +24,11 @@ CFLAGS = -fPIC -Wall -Wextra -Werror
 
 LDFLAGS	=	-shared
 
-OBJ	=	$(SRC:.c=.so)
+OBJ	=	$(LIB:.c=.so)
+
+LIBDLFLAG	=	-ldl
+
+CPPFLAGS	=	-I./lib
 
 %.so: %.c
 	$(CC) $(CFLAGS) $(LDFLAGS) $< -o $@
@@ -27,6 +36,7 @@ OBJ	=	$(SRC:.c=.so)
 all: $(MAKE)
 
 $(MAKE): $(OBJ)
+	$(CC) -o $(EXEC_NAME) $(SRC) $(LIBDLFLAG) $(CPPFLAGS)
 
 clean:
 	$(RM) $(OBJ)
